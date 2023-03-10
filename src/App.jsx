@@ -1,6 +1,6 @@
 import Navigation from './Components/Navigation'
 import { Routes, Route } from 'react-router-dom'
-import './Assets/scss/App.scss'
+import './assets/scss/App.scss'
 import ProductsPage from './Pages/ProductsPage'
 import ProductPage from './Pages/ProductPage'
 import FrontPage from './Pages/FrontPage'
