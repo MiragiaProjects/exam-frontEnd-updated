@@ -1,0 +1,76 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'main.scss';
+@import 'toastify';
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .row.center {
+    align-items: center;
+  }
+
+  .block {
+    background-color: #e0e0e0;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .text-right {
+    text-align: right;
+  }
+  img.small {
+    max-height: 8rem;
+  }
+  button {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    margin: 0.1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #404040 solid;
+    background-color: #f0c040;
+    width: 100%;
+    cursor: pointer;
+  }
+  button.add {
+    background-color: #40c0f0;
+    width: 1.5rem;
+  }
+  button.remove {
+    background-color: #f04040;
+    width: 1.5rem;
+  }
+ 
+  .productCard {
+    margin: 10px;
+}
+.header-div {
+    text-align: center;
+
+    .frontPage-h1 {
+      margin: 40px 0px;
+    }
+  
+    .frontPage-h2 {
+      margin: 40px 0px;
+    }
+}
+
+.front-pagePosts {
+  text-align: center;
+  margin: 20px;
+  background: rgb(129,184,223);
+  background: radial-gradient(circle, rgba(129,184,223,1) 0%, rgba(175,32,32,0) 100%); 
+  padding: 20px;
+    .post-h2{
+      margin: 20px 0px;
+    }
+}
+
+.product-pageProduct {
+  text-align: center;
+}
+
+.infoPage {
+  text-align: center;
+}
