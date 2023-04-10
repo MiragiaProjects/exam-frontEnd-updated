@@ -3,22 +3,41 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { Link, NavLink } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { getMenu } from '../services/helper'
 
 
 const Navigation = () => {
+
+  const { data, isLoading, isError, error} = useQuery(['menu',], () => getMenu())
+  console.log("menu",data)
   return (
     <Navbar bg="dark" variant="dark" expand="md">
     <Container>
-      <Navbar.Brand as={Link} to="/">Art Shop</Navbar.Brand>
+    {isLoading && (<p className='my-3'>Loading ...</p>)}
 
+      {isError && (
+        <Alert>
+          <p>Oh no, error!</p>
+          <p>{error.message}</p>
+        </Alert>)}
+        
+      <Navbar.Brand as={Link} to="/">Art Shop</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
+      {data &&(
         <Nav className="ms-auto">
-          <Nav.Link as={NavLink} end to="/">Home</Nav.Link>
-          <Nav.Link as={NavLink} end to="/products">Art</Nav.Link>
-          <Nav.Link as={NavLink} end to="/info">Information</Nav.Link>
+        
+          {data.map(menu =>(
+            <Nav.Link as={NavLink} end to={menu.title.rendered} 
+             dangerouslySetInnerHTML={{ __html: menu.excerpt.rendered}}
+            ></Nav.Link>
+          ))}
+          
         </Nav>
+      )}
       </Navbar.Collapse>
+      
     </Container>
   </Navbar>
   )

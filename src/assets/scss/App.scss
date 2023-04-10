@@ -45,7 +45,7 @@
     margin: 10px;
 }
 .header-div {
-    text-align: center;
+    // text-align: center;
 
     .frontPage-h1 {
       margin: 40px 0px;
@@ -67,10 +67,83 @@
     }
 }
 
+.product-wrapper{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
 .product-pageProduct {
   text-align: center;
+  width: 45% ;
+  margin: 10px;
+    .product-h3{
+      margin-top: 50px;
+    }
+}
+.product-pageProduct-img {
+  margin-top: 50px;
+   img{
+     width: 95%;
+   }
+
 }
 
 .infoPage {
   text-align: center;
 }
+
+figure {
+  img{
+    height: auto;
+    width: 300px;
+  }
+}
+
+.post-wrapper{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.post-pagePost-img{
+  margin-top: 50px;
+  img{
+    width: 95%;
+  }
+}
+
+.post-pagePost {
+  text-align: center;
+  width: 45% ;
+  margin: 10px;
+  .post-h3 {
+    margin-top: 50px;
+  }
+}
+
+.products-wrapper {
+  display:flex;
+  width: 100%;
+  flex-direction: row;
+  .products-div {
+    width:55%;
+    
+  }
+  .cart-div {
+    padding: 20px;
+    width: 35%;
+    margin: 20px;
+    background-color:cornflowerblue;
+  }
+}
+
+.cart-wrapper-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+// @media  screen and (min-width:) {
+  
+// }

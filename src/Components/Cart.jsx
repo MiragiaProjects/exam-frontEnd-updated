@@ -7,15 +7,15 @@ import { db } from '../firebase'
 //import { toast } from 'react-toastify'
 
 
-
 const Cart = ( props ) => {
-    const { cartItems, onAddToCart, onRemoveFromCart } = props
-    const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
-    const taxPrice = itemsPrice * 0.14;
-    const shippingPrice = itemsPrice > 2000 ? 0 : 20;
-    const totalPrice = itemsPrice + taxPrice + shippingPrice;
-
+    const { cartItems, onAddToCart, onRemoveFromCart, emptyCart } = props
+    const itemsPrice = parseInt(cartItems.reduce((a, c) => a + c.qty * c.acf.price_on_a_product, 0))
+    const taxPrice = parseInt(itemsPrice * 0.14)
+    const shippingPrice = parseInt(itemsPrice > 2000 ? 0 : 20)
+    const totalPrice = parseInt(itemsPrice + taxPrice + shippingPrice)
+    console.log("CartItemsList", cartItems )
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
 
     const onCreateOrder = async (data) => {
       await addDoc(collection(db, 'orders'),{
@@ -25,6 +25,8 @@ const Cart = ( props ) => {
           town: data.town,
           postcode: data.postcode,
           //totalprice: totalPrice,
+          //items: cartItems,
+          //qty: item.qty,
           order: data.order,
       })
     //   toast.info('Thanks for your order!', {
@@ -58,8 +60,8 @@ const Cart = ( props ) => {
                 </button>
               </div>
   
-              <div className="col-2 text-right">
-                {item.qty} x kr{Number(item.acf.price_on_a_product)}
+              <div>
+                {item.qty} x {Number(item.acf.price_on_a_product)} kr
               </div>
             </div>
           ))}
@@ -67,26 +69,26 @@ const Cart = ( props ) => {
           {cartItems.length !== 0 && (
             <>
               <hr></hr>
-              <div className="row">
-                <div className="col-2">Items Price</div>
-                <div className="col-1 text-right">${Number(itemsPrice)}</div>
+              <div className="cart-wrapper-div">
+                <div className="cart-title">Items Price</div>
+                <div className="cart-input">${Number(itemsPrice)}</div>
               </div>
-              <div className="row">
-                <div className="col-2">Tax Price</div>
-                <div className="col-1 text-right">${Number(taxPrice)}</div>
+              <div className="cart-wrapper-div">
+                <div className="cart-title">Tax Price</div>
+                <div className="cart-input">${Number(taxPrice)}</div>
               </div>
-              <div className="row">
-                <div className="col-2">Shipping Price</div>
-                <div className="col-1 text-right">
+              <div className="cart-wrapper-div">
+                <div className="cart-title">Shipping Price</div>
+                <div className="cart-input">
                   ${shippingPrice}
                 </div>
               </div>
   
-              <div className="row">
-                <div className="col-2">
+              <div className="cart-wrapper-div">
+                <div className="cart-title">
                   <strong>Total Price</strong>
                 </div>
-                <div className="col-1 text-right">
+                <div className="cart-input">
                   <strong>${Number(totalPrice)}</strong>
                 </div>
               </div>
@@ -94,9 +96,9 @@ const Cart = ( props ) => {
 
                 <div>
                   <p>
-                    <stronger>
-                      Sorry for the inconvince but the cart is broken, please fill in the form below...
-                    </stronger>
+                    <strong>
+                      The only way to pay right now is with invoice
+                    </strong>
                   </p>
                 </div>
                 <hr />
@@ -170,15 +172,12 @@ const Cart = ( props ) => {
                       placeholder="Order"
                       as="textarea" 
                       />
-                       <Button variant="primary" type="submit">
+                       <Button variant="primary" onClick={emptyCart}> Empty Cart</Button>
+                       <Button variant="primary" onClick={emptyCart} type="submit">
                   Submit Order
                 </Button>
                 </Form.Group>
 
-
-                <div>The only way to pay right now is with invoice</div>
-
-               
               </Form>
             </>
           )}

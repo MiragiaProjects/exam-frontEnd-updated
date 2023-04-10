@@ -13,6 +13,10 @@ export const getPosts = () => {
     return get(`posts/?_embed`)
 }
 
+export const getPost = (id) => {
+    return get(`posts/${id}?_embed`)
+}
+
 // Get Products
 export const getProducts = () => {
     return get(`products/?_embed`)
@@ -31,4 +35,15 @@ export const getFourProducts = () => {
 // Get 4 posts
 export const getFourPosts = () => {
     return get(`posts/?_embed`)
+}
+
+// Get Menu
+export const getMenu = () => {
+    return get(`menu/?_embed`)
+}
+
+// Get info
+
+export const getInfo = () => {
+    return get(`info/?_embed`)
 }

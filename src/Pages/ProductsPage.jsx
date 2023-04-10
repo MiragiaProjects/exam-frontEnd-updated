@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 import Container  from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
@@ -12,8 +13,6 @@ import ProductCard from '../Components/ProductCard'
 import Cart from '../Components/Cart'
 
 
-
-
 const ProductsPage = () => {
   const { product_id } = useParams()
   const { data, isLoading, isError, error} = useQuery(['product', product_id], () => getProducts(product_id))
@@ -23,31 +22,52 @@ const ProductsPage = () => {
 // To add to cart
 const onAddToCart = (data) => {
   const exist = cartItems.find((x) => x.id === data.id);
-  console.log('dataProd1', data)
+  
   if (exist) {
-    setCartItems(
-      cartItems.map((x) =>
-        x.id === data.id ? { ...exist, qty: exist.qty + 1 } : x
-      )
-    );
-    console.log('dataProd2', data)
+      const newCartItems = cartItems.map((x) => 
+      x.id === data.id ? { ...exist, qty: exist.qty + 1} : x 
+      );
+    setCartItems(newCartItems);
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+  
   } else {
-    setCartItems([...cartItems, { ...data, qty: 1 }]);
+    const newCartItems = [...cartItems, { ...data, qty: 1}];
+    setCartItems(newCartItems);
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems));
   }
-};
+}
   // To remove from cart
   const onRemoveFromCart = (data) => {
     const exist = cartItems.find((x) => x.id === data.id);
     if (exist.qty === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== data.id));
+      const newCartItems = cartItems.filter((x) => x.id !== data.id)
+      setCartItems(newCartItems);
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+  
     } else {
-      setCartItems(
-        cartItems.map((x) =>
+       const newCartItems = cartItems.map((x) =>
           x.id === data.id ? { ...exist, qty: exist.qty - 1 } : x
-        )
-      )
+        );
+        setCartItems(newCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+        console.log("setCartItems",setCartItems)
     }
   }
+
+   const emptyCart = () => {
+     setCartItems([]);
+     localStorage.setItem('cartItems', JSON.stringify([]))
+   }
+
+
+  useEffect(()=> {
+    setCartItems(
+      localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : []
+      )
+  },[])
+
   return (
     <Container>
       <h1>Art</h1>
@@ -58,14 +78,17 @@ const onAddToCart = (data) => {
         <p>Oh no, error!</p>
         <p>{error.message}</p>
     </Alert>)}
-      
-      
-      {data && <ProductCard onAddToCart={onAddToCart} data={data} />}
-
-      <Cart onAddToCart={onAddToCart} onRemoveFromCart={onRemoveFromCart} cartItems={cartItems} />
-
+      <div className='products-wrapper'>
+        <div className='products-div'>
+          {data && <ProductCard onAddToCart={onAddToCart} data={data} />}
+        </div>
+        <div className='cart-div'>
+          <Cart emptyCart={emptyCart} onAddToCart={onAddToCart} onRemoveFromCart={onRemoveFromCart} cartItems={cartItems} setCartItems={setCartItems} />
+        </div>
+      </div>
     </Container>
   )
 }
+
 
 export default ProductsPage
