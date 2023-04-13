@@ -1,9 +1,11 @@
-import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+
 import { Link, NavLink } from 'react-router-dom'
+
 import { useQuery } from 'react-query'
+
 import { getMenu } from '../services/helper'
 
 
@@ -29,7 +31,7 @@ const Navigation = () => {
         <Nav className="ms-auto">
         
           {data.map(menu =>(
-            <Nav.Link as={NavLink} end to={menu.title.rendered} 
+            <Nav.Link as={NavLink} key={menu.id} end to={menu.title.rendered} 
              dangerouslySetInnerHTML={{ __html: menu.excerpt.rendered}}
             ></Nav.Link>
           ))}

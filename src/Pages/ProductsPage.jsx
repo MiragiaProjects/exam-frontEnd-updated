@@ -12,6 +12,10 @@ import { getProducts } from '../services/helper'
 import ProductCard from '../Components/ProductCard'
 import Cart from '../Components/Cart'
 
+import "@wordpress/block-library/build-style/common.css"
+import "@wordpress/block-library/build-style/style.css"
+import "@wordpress/block-library/build-style/theme.css"
+
 
 const ProductsPage = () => {
   const { product_id } = useParams()

@@ -1,9 +1,11 @@
-import React from 'react'
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
+
 import { useForm } from 'react-hook-form'
+
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '../firebase'
+
 //import { toast } from 'react-toastify'
 
 
@@ -24,20 +26,19 @@ const Cart = ( props ) => {
           adress: data.adress,
           town: data.town,
           postcode: data.postcode,
-          //totalprice: totalPrice,
-          //items: cartItems,
-          //qty: item.qty,
+          // totalprice: totalPrice,
+          // items: cartItems,
           order: data.order,
       })
-    //   toast.info('Thanks for your order!', {
-    //     position: "top-center",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     });
+        // toast.info('Thanks for your order!', {
+        //   position: "top-center",
+        //   autoClose: 3000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   });
      reset()
       
   }
@@ -100,6 +101,7 @@ const Cart = ( props ) => {
                       The only way to pay right now is with invoice
                     </strong>
                   </p>
+                  <Button variant="primary" onClick={emptyCart}> Empty Cart</Button>
                 </div>
                 <hr />
 
@@ -172,8 +174,11 @@ const Cart = ( props ) => {
                       placeholder="Order"
                       as="textarea" 
                       />
-                       <Button variant="primary" onClick={emptyCart}> Empty Cart</Button>
-                       <Button variant="primary" onClick={emptyCart} type="submit">
+                      
+                       <Button 
+                       variant="primary" 
+                        onClick={emptyCart} 
+                       type="submit">
                   Submit Order
                 </Button>
                 </Form.Group>

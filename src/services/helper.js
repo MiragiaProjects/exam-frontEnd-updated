@@ -47,3 +47,4 @@ export const getMenu = () => {
 export const getInfo = () => {
     return get(`info/?_embed`)
 }
+
