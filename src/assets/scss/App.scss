@@ -3,6 +3,17 @@
 @import 'toastify';
 @import 'react-toastify/scss/main';
 
+body{
+  background-color: #202624;
+}
+
+.Navbar-nav {
+  background-color: #47a39a;
+}
+
+.container-all {
+  background-color: #1a8570;
+}
 
   .row {
     display: flex;
@@ -61,8 +72,6 @@
 .front-pagePosts {
   text-align: center;
   margin: 20px;
-  background: rgb(129,184,223);
-  background: radial-gradient(circle, rgba(129,184,223,1) 0%, rgba(175,32,32,0) 100%); 
   padding: 20px;
     .post-h2{
       margin: 20px 0px;
@@ -141,7 +150,7 @@ figure {
     padding: 20px;
     width: 35%;
     margin: 20px;
-    background-color:cornflowerblue;
+    background-color: #47a39a;
   }
 }
 
@@ -160,6 +169,8 @@ figure {
   }
 }
 
-// @media  screen and (min-width:) {
-  
-// }
+ @media  screen and (max-width:1250px) {
+  .product-pageProduct-img{
+    width:100%;
+  }
+ }

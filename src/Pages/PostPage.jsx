@@ -16,7 +16,7 @@ const PostPage = () => {
 
   return (
     <>
-    <Container>
+    <Container className='container-all'>
       {isLoading && (<p className='my-3'>Loading ...</p>)}
 
       {isError && (
@@ -44,6 +44,12 @@ const PostPage = () => {
           return cats.name
          })}
          </h3>
+         Tags:
+         {data._embedded['wp:term'][1] == []? null: data._embedded['wp:term'][1].map(tags => {
+          return tags.name
+         }) }
+         
+         
         </span>
         </div>
       </div>

@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'https://www.miragia-project.se/wp-json/wp/v2/'
 
 const get = async (endpoint) => {
     const response = await axios.get(endpoint)
-    console.log(response.data)
+    
     return response.data
 }
 

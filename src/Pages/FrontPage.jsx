@@ -25,7 +25,7 @@ const FrontPage = () => {
  const placeholderImg = "https://www.miragia-project.se/wp-content/uploads/2023/04/IMG_1339-scaled.jpg"
 
   return (
-    <Container>
+    <Container className='container-all'>
        <div className='header-div'>
         <h1 className='frontPage-h1'>Do you need new art for you walls?</h1>
         <hr />

@@ -12,9 +12,9 @@ import { getMenu } from '../services/helper'
 const Navigation = () => {
 
   const { data, isLoading, isError, error} = useQuery(['menu',], () => getMenu())
-  console.log("menu",data)
+ 
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
+    <Navbar className='Navbar-nav' expand="md">
     <Container>
     {isLoading && (<p className='my-3'>Loading ...</p>)}
 

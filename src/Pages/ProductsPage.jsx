@@ -54,7 +54,7 @@ const onAddToCart = (data) => {
         );
         setCartItems(newCartItems);
         localStorage.setItem('cartItems', JSON.stringify(newCartItems));
-        console.log("setCartItems",setCartItems)
+        
     }
   }
 
@@ -73,7 +73,7 @@ const onAddToCart = (data) => {
   },[])
 
   return (
-    <Container>
+    <Container className='container-all'>
       <h1>Art</h1>
       {isLoading && (<p className='my-3'>Loading ...</p>)}
 

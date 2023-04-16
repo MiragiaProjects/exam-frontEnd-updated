@@ -18,7 +18,7 @@ const ProductPage = () => {
   const { product_id } = useParams()
   const { data, isLoading, isError, error} = useQuery(['product', product_id], () => getProduct(product_id))
 
-  const placeholderImg = "https://www.miragia-project.se/wp-json/wp/v2/media/47"
+  const placeholderImg = "https://www.miragia-project.se/wp-content/uploads/2023/04/IMG_1339-scaled.jpg"
   
   const [ cartItems, setCartItems ] = useState([])
  
@@ -49,7 +49,7 @@ useEffect(()=> {
 },[])
 
   return (
-    <Container>
+    <Container className='container-all'>
       {isLoading && (<p className='my-3'>Loading ...</p>)}
 
       {isError && (

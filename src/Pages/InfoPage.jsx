@@ -14,7 +14,7 @@ const InfoPage = () => {
   const { info_id } = useParams()
   const { data, isLoading, isError, error } = useQuery(['info', info_id], () => getInfo(info_id))
   return (
-<Container>
+<Container className='container-all'>
       {isLoading && (<p className='my-3'>Loading ...</p>)}
 
       {isError && (
